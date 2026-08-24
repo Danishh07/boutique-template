@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import ContactForm from '@/components/ContactForm'; 
 
 export default function Home() {
@@ -40,25 +41,41 @@ export default function Home() {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-          {/* Dummy Products Map */}
-          {[1, 2, 3, 4].map((item) => (
-            <div key={item} className="group cursor-pointer">
-              {/* Product Image Placeholder */}
-              <div className="bg-gray-200 h-96 w-full mb-4 overflow-hidden rounded-sm">
-                <div className="w-full h-full bg-gray-300 group-hover:scale-105 transition duration-500"></div>
+          
+          {/* Array banaya jisme alag alag images aur details hain */}
+          {[
+            { id: 1, title: "Signature Summer Dress", price: "$85.00", img: "/pic1.jpg" },
+            { id: 2, title: "Minimalist Kurti Set", price: "$65.00", img: "/pic2.jpg" },
+            { id: 3, title: "Pastel Lehenga", price: "$120.00", img: "/pic3.jpg" },
+            { id: 4, title: "Cotton Maxi", price: "$55.00", img: "/pic4.jpg" }
+          ].map((item) => (
+            <div key={item.id} className="group cursor-pointer">
+              
+              {/* Asli Image Yahan Aayegi */}
+              <div className="relative h-96 w-full mb-4 overflow-hidden rounded-sm bg-gray-100">
+                <Image 
+                  src={item.img} 
+                  alt={item.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition duration-500"
+                />
               </div>
+              
               <div className="flex justify-between items-center">
-                <h4 className="text-md font-medium">Signature Summer Dress</h4>
-                <p className="text-gray-600">$85.00</p>
+                <h4 className="text-md font-medium">{item.title}</h4>
+                <p className="text-gray-600">{item.price}</p>
               </div>
               <p className="text-sm text-gray-400 mt-1">Available in 3 colors</p>
             </div>
           ))}
+
         </div>
       </section>
+
+      {/* 4. Contact Form */}
       <ContactForm />
 
-      {/* 4. Minimalist Footer */}
+      {/* 5. Minimalist Footer */}
       <footer className="bg-white py-12 border-t border-gray-200 text-center">
         <h2 className="text-xl font-serif tracking-widest mb-4">LUXE STUDIO</h2>
         <p className="text-sm text-gray-500">© 2026 Luxe Studio. All rights reserved.</p>
